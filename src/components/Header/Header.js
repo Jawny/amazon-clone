@@ -11,7 +11,7 @@ import logo from "../../images/amazon-logo.png";
 import "./Header.scss";
 
 function Header() {
-  const [{ basket }] = useStateValue();
+  const [{ cart }] = useStateValue();
   return (
     <nav className="header-container">
       <Link to="/">
@@ -43,10 +43,10 @@ function Header() {
         </Link>
 
         <Link to="/checkout" className="headerButton-link">
-          <div className="header-button-container header-basket-container">
+          <div className="header-button-container header-cart-container">
             <ShoppingCartIcon />
-            <span className="header-button-second-text basket-count">
-              {basket.length}
+            <span className="header-button-second-text cart-count">
+              {cart.length}
             </span>
           </div>
         </Link>

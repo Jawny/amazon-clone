@@ -3,7 +3,7 @@ import { useStateValue } from "../../Redux/StateProvider";
 import "./Product.scss";
 
 function Product({ id, title, image, price, rating }) {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ cart }, dispatch] = useStateValue();
   const addToCart = () => {
     dispatch({
       type: "ADD_TO_CART",

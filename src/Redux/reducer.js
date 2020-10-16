@@ -1,5 +1,8 @@
+export const getCartTotal = (basket) =>
+  basket?.reduce((amount, item) => item.price + amount, 0);
+
 export const initialState = {
-  basket: [],
+  cart: [],
   user: null,
 };
 
@@ -9,11 +12,18 @@ function reducer(state, action) {
       // logic for add to cart
       return {
         ...state,
-        basket: [...state.basket, action.item],
+        cart: [...state.cart, action.item],
       };
 
     case "REMOVE_FROM_CART":
-      return { state };
+      let newCart = [...state.cart];
+      const index = state.cart.findIndex(
+        (cartItem) => cartItem.id === action.id
+      );
+      if (index >= 0) {
+        newCart.splice(index, 1);
+      }
+      return { ...state, cart: newCart };
 
     default:
       return state;
