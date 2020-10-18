@@ -1,6 +1,7 @@
 .login-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: white;
   height: 100vh;
   .login-image {
@@ -41,5 +42,6 @@
     }
   }
   .signup-button {
+    margin-top: 10px;
   }
 }

@@ -8,7 +8,7 @@ function Login() {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  // does useState set the state to the user variable from the reducer? QUESTION
   const login = (e) => {
     e.preventDefault(); // stops react from refreshing
     auth
