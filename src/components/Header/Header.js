@@ -1,17 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  ShoppingBasket,
-  ShoppingCart as ShoppingCartIcon,
-} from "@material-ui/icons";
+import { ShoppingCart as ShoppingCartIcon } from "@material-ui/icons";
 import SearchBar from "../SearchBar/SearchBar";
 import { useStateValue } from "../../Redux/StateProvider";
+import { auth } from "../../Firebase/Firebase";
 // import NavButton from "../NavButton/NavButton"
 import logo from "../../images/amazon-logo.png";
 import "./Header.scss";
 
 function Header() {
-  const [{ cart }] = useStateValue();
+  const [{ cart, user }] = useStateValue();
+
+  const login = () => {
+    if (user) {
+      auth.signOut();
+    }
+  };
+
   return (
     <nav className="header-container">
       <Link to="/">
@@ -21,10 +26,14 @@ function Header() {
       <SearchBar />
 
       <div className="header-buttons-container">
-        <Link to="/login" className="headerButton-link">
-          <div className="header-button-container">
-            <span className="header-button-first-text">Hello Johnny</span>
-            <span className="header-button-second-text">Sign In</span>
+        <Link to={!user && "/login"} className="headerButton-link">
+          <div onClick={login} className="header-button-container">
+            <span className="header-button-first-text">
+              Hello {user?.email}
+            </span>
+            <span className="header-button-second-text">
+              {user ? "Sign Out" : "Sign In"}
+            </span>
           </div>
         </Link>
 
